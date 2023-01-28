@@ -65,7 +65,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             savedInstanceState == null
         ) {
             NewAppVersionBottomSheet().show(parentFragmentManager, "newVersion")
-        }//testst
+        }
     }
 
     private fun updateUserData(user: UserModel) = with (binding) {
