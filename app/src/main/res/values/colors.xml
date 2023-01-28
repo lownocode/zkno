@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- static colors -->
+    <color name="accent">#975cff</color>
+    <color name="accentDarken1">#7D42E4</color>
+    <color name="accentDarken2">#6437B3</color>
+    <color name="replacementLesson">#356EFF</color>
+    <color name="cancelledLesson">#E44949</color>
+    <color name="addedLesson">#0CCF5A</color>
+    <color name="red">#E44949</color>
+    <color name="ic_launcher_background">#D5BDFF</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="white">#FFF</color>
+    <color name="vk_logo_background">#0077ff</color>
+    <color name="tgLogoBackground">#229ED9</color>
+    <color name="bottomNavigationBackgroundLight">#000</color>
+    <color name="grey">#6B6B6B</color>
+    <color name="dark">#000</color>
+    <color name="mark_2">#cb2f2f</color>
+    <color name="mark_3">#ea6f0b</color>
+    <color name="mark_4">#3a9100</color>
+    <color name="mark_5">#009d26</color>
+    <color name="mark_n">#9C9C9C</color>
+    <color name="green">#009649</color>
+    <color name="blue">#1F78FF</color>
+    <color name="mark_2_background">#33CB2F2F</color>
+    <color name="mark_3_background">#33EA6F0B</color>
+    <color name="mark_4_background">#333A9100</color>
+    <color name="mark_5_background">#33009D26</color>
+    <color name="mark_n_background">#1A000000</color>
+
+    <!-- buttons background & foreground -->
+    <color name="button_pick_date_background">#0B011E</color>
+    <color name="button_pick_date_foreground">#FFFFFF</color>
+    <color name="button_schedule_nav_background">#D5BAFF</color>
+    <color name="button_schedule_nav_foreground">#341D49</color>
+    <color name="button_cancel_background">#1C1C1C</color>
+    <color name="button_cancel_foreground">#D6D6D6</color>
+
+    <!-- background only -->
+    <color name="background_content">#fff</color>
+    <color name="background_exit_icon">#E33737</color>
+    <color name="background_schedule_calendar">#F2EBFF</color>
+    <color name="background_schedule_item_container">#EDEDED</color>
+    <color name="background_bottom_sheet">#fff</color>
+    <color name="background_bottom_nav_indicator">#3B975CFF</color>
+    <color name="background_pressable">#1A000000</color>
+    <color name="background_bottom_nav">#F9F6FF</color>
+    <color name="background_toolbar_icon">#3B975CFF</color>
+    <color name="background_card">#F4EEFF</color>
+    <color name="background_loading_spinner_container">#FFFFFF</color>
+    <color name="background_replacement_lesson">#1A356EFF</color>
+    <color name="background_cancelled_lesson">#1AE44949</color>
+    <color name="background_added_lesson">#1A0CCF5A</color>
+    <color name="background_schedule_lesson_not_ended">#A2A2A2</color>
+
+    <!-- others -->
+    <color name="text">#000</color>
+    <color name="text_secondary">#636363</color>
+    <color name="divider">#DDDDDD</color>
+</resources>

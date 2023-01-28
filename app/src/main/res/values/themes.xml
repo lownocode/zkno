@@ -1,0 +1,20 @@
+<resources>
+    <style name="Theme.Zkno" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@color/background_content</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="bottomNavIndicator" parent="">
+        <item name="android:width">@dimen/m3_bottom_nav_item_active_indicator_width</item>
+        <item name="android:height">28dp</item>
+        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator</item>
+        <item name="android:color">@color/background_bottom_nav_indicator</item>
+    </style>
+
+    <style name="bottomNavigationViewLabel">
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

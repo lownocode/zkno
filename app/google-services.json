@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "663801954151",
+    "firebase_url": "https://zknoassistant-666-default-rtdb.firebaseio.com",
+    "project_id": "zknoassistant-666",
+    "storage_bucket": "zknoassistant-666.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663801954151:android:46de9de7ad9706871d79c2",
+        "android_client_info": {
+          "package_name": "com.quickrise.zkno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663801954151-lr2616l7s6fdgldgarbdvr3st35qehtu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyCWtTRQTRBzHSfNByX0iB3Nfn4vN9e34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663801954151-lr2616l7s6fdgldgarbdvr3st35qehtu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

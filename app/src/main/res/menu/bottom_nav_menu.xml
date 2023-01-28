@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_profile"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/marks"
+        android:title="@string/marks"
+        android:icon="@drawable/ic_diary"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/schedule"
+        android:title="@string/schedule"
+        android:icon="@drawable/ic_book"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/dinner"
+        android:title="@string/dinner"
+        android:icon="@drawable/ic_dinner"
+        android:enabled="true"
+        />
+</menu>

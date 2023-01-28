@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 7.2.1" type="baseline" client="gradle" dependencies="false" name="AGP (7.2.1)" variant="fatal" version="7.2.1">
+
+    <issue
+        id="UnknownId"
+        message="The id &quot;`groupNameInputLayout`&quot; is not defined anywhere."
+        errorLine1="        app:layout_constraintTop_toBottomOf=&quot;@+id/groupNameInputLayout&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_select_group.xml"
+            line="113"
+            column="9"/>
+    </issue>
+
+</issues>

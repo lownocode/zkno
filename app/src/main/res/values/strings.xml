@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">ZKNO</string>
+    <string name="authorization">Авторизация</string>
+    <string name="vk">ВКонтакте</string>
+    <string name="profile">Профиль</string>
+    <string name="dinner">Обед</string>
+    <string name="schedule">Расписание</string>
+    <string name="edit">Редактировать</string>
+    <string name="darkThemeModeOn">Включена</string>
+    <string name="darkThemeModeOff">Выключена</string>
+    <string name="darkThemeModeAuto">Автоматически</string>
+    <string name="exit">Выйти из аккаунта</string>
+    <string name="errorHeader">Ой, ошибочка =(</string>
+    <string name="weekendTitle">Выходной день</string>
+    <string name="weekendDescription">Я ждал этого момента четыре… Нет, пять тысяч лет</string>
+    <string name="errorDescription">Кажется, в приложении произошла критическая ошибка. Разработчики уже получили отчёт об ошибке, пожалуйста, дождитесь новой версии приложения, где будет исправлена эта ошибка</string>
+    <string name="setup_date">Установить дату</string>
+    <string name="appFullName">Западный комплекс непрерывного образования</string>
+    <string name="scheduleNotFoundTitle">Расписания нет :(</string>
+    <string name="scheduleNotFoundDescription">Кажется, кто-то ещё не заполнил расписание для вашей группы на этот день</string>
+    <string name="dinnerNotFound">Меню обеда отсутствует</string>
+    <string name="dinnerNotFoundDescription">К сожалению, меню обеда для этого дня не было добавлено на сайт</string>
+    <string name="marks">Оценки</string>
+    <string name="your_marks">Ваши оценки</string>
+    <string name="aboutApp">ZKNO - проект, который позволяет студентам ознакомиться с раписанием и другой полезной информацией. Это удобное мобильное приложение и многофункциональный бот</string>
+    <string name="signIn">Войти</string>
+    <string name="inputLogin">Введите логин</string>
+    <string name="inputPassword">Введите пароль</string>
+    <string name="authorize">Авторизоваться</string>
+    <string name="registration">Регистрация</string>
+    <string name="or">или</string>
+    <string name="orSignInWith">или войти через</string>
+    <string name="signUp">Зарегистрироваться</string>
+    <string name="inputPersonalCode">Введите персональный код</string>
+    <string name="thinkUpLogin">Придумайте логин</string>
+    <string name="thinkUpPassword">Придумайте пароль</string>
+    <string name="update">Обновление</string>
+    <string name="settings">Настройки</string>
+    <string name="whatsNew">Что нового</string>
+    <string name="downloadUpdate">Скачать обновление</string>
+    <string name="thisUpdateIsRequired">Это обновление обязательное, пропустить его нельзя</string>
+    <string name="comeToUpdate">Пришла пора обновиться!</string>
+    <string name="notNow">Не сейчас</string>
+    <string name="download">Скачать</string>
+    <string name="newVersionIsAvailable">Доступна новая версия</string>
+</resources>

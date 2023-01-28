@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- buttons background & foreground -->
+    <color name="button_pick_date_background">#FFFFFF</color>
+    <color name="button_pick_date_foreground">#0B011E</color>
+    <color name="button_schedule_nav_background">#452C80</color>
+    <color name="button_schedule_nav_foreground">#E1C1FF</color>
+    <color name="button_cancel_background">#C3C3C3</color>
+    <color name="button_cancel_foreground">#272727</color>
+
+    <!-- background only -->
+    <color name="background_bottom_sheet">#1B1B1B</color>
+    <color name="background_bottom_nav">#191919</color>
+    <color name="background_toolbar_icon">#12975CFF</color>
+    <color name="background_card">#2B2A2A</color>
+    <color name="background_content">#121212</color>
+    <color name="background_pressable">#1AFFFFFF</color>
+    <color name="background_schedule_calendar">#412159</color>
+    <color name="background_schedule_item_container">#191919</color>
+    <color name="background_schedule_lesson_not_ended">#292929</color>
+    <color name="background_replacement_lesson">#10141C</color>
+    <color name="background_cancelled_lesson">#1C1010</color>
+    <color name="background_added_lesson">#101C13</color>
+    <color name="background_loading_spinner_container">#1E1E1E</color>
+
+    <!-- others -->
+    <color name="divider">#242424</color>
+    <color name="text">#fff</color>
+    <color name="text_secondary">#A3A3A3</color>
+
+    <color name="mark_n_background">#1AFFFFFF</color>
+</resources>
