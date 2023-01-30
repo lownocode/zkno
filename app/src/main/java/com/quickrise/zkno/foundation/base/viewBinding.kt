@@ -19,7 +19,7 @@ inline fun <T : ViewBinding> AppCompatActivity.viewBinding(crossinline factory: 
     }
 
 fun <T : ViewBinding> Fragment.viewBinding(factory: (View) -> T): ReadOnlyProperty<Fragment, T> =
-    object: ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {
+    object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {
         private var binding: T? = null
 
         override fun getValue(thisRef: Fragment, property: KProperty<*>): T =

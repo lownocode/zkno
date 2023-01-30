@@ -3,6 +3,7 @@ package com.quickrise.zkno.ui.fragments.settings
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -14,7 +15,7 @@ import com.quickrise.zkno.foundation.base.navigator
 import com.quickrise.zkno.foundation.base.viewBinding
 import com.quickrise.zkno.foundation.base.viewModelFactory
 import com.quickrise.zkno.ui.fragments.bottomSheets.ExitConfirmationBottomSheet
-import com.quickrise.zkno.ui.fragments.bottomSheets.SelectThemeBottomSheet
+import com.quickrise.zkno.ui.fragments.bottomSheets.ChooseThemeBottomSheet
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private val binding by viewBinding(FragmentSettingsBinding::bind)
@@ -24,6 +25,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         super.onViewCreated(view, savedInstanceState)
 
         setupViews()
+        setupViewModelObservers()
     }
 
     private fun setupViews() = with (binding) {
@@ -38,18 +40,25 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         btnAbout.setOnClickListener { goToAbout() }
         btnChangeCompactMenu.setOnClickListener { changeCompactMenu() }
 
-        apperance.background = cardBackground
+        appearance.background = cardBackground
         darkThemeModeStatus.text = getDarkThemeModeStatus()
         switchChangeCompactMenu.isChecked = Preferences()
             .settings
             ?.getBoolean(Key.MENU_IS_COMPACT, false) == true
     }
 
+    private fun setupViewModelObservers() = with (viewModel) {
+        themeMode.observe(viewLifecycleOwner) {
+            Log.d("FROM SETTINGS UPDATE", it)
+            updateUI()
+        }
+    }
+
     private fun openExitModal() =
         ExitConfirmationBottomSheet().show(parentFragmentManager, "exitConfirmation")
 
     private fun openThemeChooser() =
-        SelectThemeBottomSheet().show(parentFragmentManager, "bottomSheetSelectTheme")
+        ChooseThemeBottomSheet().show(parentFragmentManager, "bottomSheetSelectTheme")
 
     private fun goToAbout() =
         navigator().navigate(fragmentId = FragmentIndex.ABOUT)
@@ -91,5 +100,21 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_UNLABELED
             layoutParams.height = resources.getDimension(R.dimen.bottomNavCompact).toInt()
         }
+    }
+
+    private fun updateThemeMode(mode: String) = when (mode) {
+        Key.MODE_ON -> with (binding) {
+            darkThemeModeStatus.text = getString(R.string.darkThemeModeOn)
+        }
+        Key.MODE_OFF -> with (binding) {
+            darkThemeModeStatus.text = getString(R.string.darkThemeModeOff)
+        }
+        else -> with (binding) { //auto
+            darkThemeModeStatus.text = getString(R.string.darkThemeModeAuto)
+        }
+    }
+
+    private fun updateUI() {
+        updateThemeMode(viewModel.themeMode.value!!)
     }
 }

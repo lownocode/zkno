@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
-        navigator.selectTab(Tab.PROFILE)
+        navigator.getActualStatusBarColor()
 
         with (binding) {
             bottomNavigationView.setOnItemSelectedListener {

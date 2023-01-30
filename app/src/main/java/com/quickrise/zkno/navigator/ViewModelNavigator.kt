@@ -102,7 +102,7 @@ class ViewModelNavigator(
         withActivity.clear()
     }
 
-    private fun getActualStatusBarColor() = withActivity { activity ->
+    fun getActualStatusBarColor() = withActivity { activity ->
         val color = if (tabStacks[currentActiveTab]!!.isEmpty()) {
             when(currentActiveTab) { // когда активны только фрагменты табов
                 Tab.PROFILE -> R.color.background_content
