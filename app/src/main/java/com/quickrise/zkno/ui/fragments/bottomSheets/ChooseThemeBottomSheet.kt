@@ -93,7 +93,7 @@ class ChooseThemeBottomSheet : BottomSheetDialogFragment() {
         bottomSheet.setBackgroundColor(Color.TRANSPARENT)
         bottomSheetDialog.window?.setDimAmount(0.3F)
     }
-//test
+
     private fun selectIndicatorTheme(mode: String) {
         setAllButtonsDisable()
 
