@@ -52,6 +52,12 @@ class ChooseThemeBottomSheet : BottomSheetDialogFragment() {
         return dialog
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        removeViewModelObservers()
+    }
+
     private fun setupViews() = with (binding) {
         val containerBackground = GradientDrawable().also {
             it.color = ContextCompat.getColorStateList(
@@ -76,6 +82,10 @@ class ChooseThemeBottomSheet : BottomSheetDialogFragment() {
         themeMode.observe(viewLifecycleOwner) {
             updateUI()
         }
+    }
+
+    private fun removeViewModelObservers() = with (viewModel) {
+        themeMode.removeObservers(viewLifecycleOwner)
     }
 
     private fun setAllButtonsDisable() {

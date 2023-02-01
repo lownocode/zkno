@@ -6,6 +6,7 @@ data class UserModel(
     val group: Group? = null,
     val newAppVersion: NewAppVersion? = null,
     val token: String,
+    val bindings: Bindings
 ) {
     data class Group(
         val name: String,
@@ -26,5 +27,11 @@ data class UserModel(
         val date: String,
         val whatsNew: String,
         val isRequired: Boolean,
+    )
+
+    data class Bindings(
+        val code: String,
+        val vk: Boolean,
+        val tg: Boolean
     )
 }

@@ -54,13 +54,14 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    buildFeatures {
-        viewBinding = true
+    viewBinding {
+        enable = true
     }
 
     dependenciesInfo {
         includeInApk = false
     }
+    namespace = "com.quickrise.zkno"
 }
 
 dependencies {

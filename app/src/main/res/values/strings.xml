@@ -43,4 +43,10 @@
     <string name="notNow">Не сейчас</string>
     <string name="download">Скачать</string>
     <string name="newVersionIsAvailable">Доступна новая версия</string>
+    <string name="about_app">О приложении</string>
+    <string name="telegram">Telegram</string>
+    <string name="link_your_tg_account">Привяжите свой аккаунт Telegram</string>
+    <string name="link_your_vk_account">Привяжите свой аккаунт ВКонтакте</string>
+    <string name="appearance">Внешний вид</string>
+    <string name="other">Другое</string>
 </resources>

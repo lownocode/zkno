@@ -17,7 +17,7 @@ import com.quickrise.zkno.foundation.model.*
 
 @SuppressLint("NotifyDataSetChanged")
 class ProfileCardsAdapter : RecyclerView.Adapter<ProfileCardsAdapter.Holder>() {
-    private var list: ArrayList<ProfileCardItem> = getCardsList() //или arrayListOf(), чтобы списка не было до загрузки юзера
+    private var list: ArrayList<ProfileCardItem> = getCardsList()
         set(value) {
             field = value
             notifyDataSetChanged()

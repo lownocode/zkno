@@ -1,7 +1,8 @@
 package com.quickrise.zkno.ui.fragments.settings
 
 import android.os.Build
-import androidx.lifecycle.LiveData
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.quickrise.zkno.Key
@@ -10,10 +11,11 @@ import com.quickrise.zkno.Preferences
 class SettingsViewModel(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private val _themeMode = savedStateHandle.getLiveData<String>(MODE_KEY)
-    val themeMode: LiveData<String> = _themeMode
+    private val _themeMode = MutableLiveData<String>()
+    val themeMode: MutableLiveData<String> = _themeMode
 
     init {
+        _themeMode.value = Key.MODE_ON
         getDarkThemeMode()
     }
 
@@ -27,9 +29,10 @@ class SettingsViewModel(
     }
 
     fun changeThemeMode(mode: String) {
-        _themeMode.value = mode
-
+        Log.d("VIEW MODEL CHANGE THEME", mode)
         Preferences().settings?.edit()?.putString(Key.DARK_THEME_MODE, mode)?.apply()
+
+        _themeMode.value = mode
     }
 
     companion object {

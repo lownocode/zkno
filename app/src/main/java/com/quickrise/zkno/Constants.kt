@@ -5,9 +5,18 @@ import com.quickrise.zkno.foundation.model.UserModel
 import com.quickrise.zkno.ui.activities.main.MainActivity
 
 val withActivity = ActivityActions<MainActivity>()
-val emptyUser = UserModel("", "", null, null, "")
+val emptyUser = UserModel(
+    name = "",
+    photo = "",
+    group = null,
+    newAppVersion = null,
+    token = "",
+    bindings = UserModel.Bindings("", false, false)
+)
 
 const val API_BASE_URL = "https://zkno.ru/api/"
+const val LINK_TELEGRAM_ACCOUNT = "https://t.me/zknoassistant_bot?start="
+const val LINK_VK_ACCOUNT= "https://vk.me/zknoassistant?ref="
 const val DIRECTION_PREVIOUS = "previous"
 const val DIRECTION_NEXT = "next"
 

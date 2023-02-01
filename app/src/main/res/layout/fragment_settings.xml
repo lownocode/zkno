@@ -68,7 +68,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="@drawable/ripple_circle"
-            tools:background="@color/exitBackground">
+            >
 
             <ImageView
                 android:layout_width="25dp"
@@ -84,11 +84,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/apperanceHead"
+        android:id="@+id/appearanceHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Внешний вид"
+        android:text="@string/appearance"
         android:textColor="@color/text"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/appearance"
@@ -106,7 +106,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/apperanceHead"
+        app:layout_constraintTop_toBottomOf="@+id/appearanceHead"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         >
@@ -243,16 +243,128 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/otherHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/other"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="@id/appearance"
+        app:layout_constraintTop_toBottomOf="@id/appearance"
+        />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linkTelegramAccountContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/otherHead"
+        app:layout_constraintRight_toLeftOf="@+id/linkVKAccountContainer"
+        tools:background="@color/background_bottom_nav"
+        android:padding="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:clickable="true"
+        >
+
+        <TextView
+            android:id="@+id/linkTelegramAccountHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/telegram"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/linkTelegramAccountSubhead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linkTelegramAccountHead"
+            app:layout_constraintRight_toLeftOf="@+id/linkTelegramAccountIcon"
+            android:text="@string/link_your_tg_account"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            />
+
+        <ImageView
+            android:id="@+id/linkTelegramAccountIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/ic_telegram"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linkVKAccountContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/linkTelegramAccountContainer"
+        app:layout_constraintBottom_toBottomOf="@+id/linkTelegramAccountContainer"
+        app:layout_constraintLeft_toRightOf="@+id/linkTelegramAccountContainer"
+        tools:background="@color/background_bottom_nav"
+        android:padding="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="5dp"
+        android:clickable="true"
+        >
+
+        <TextView
+            android:id="@+id/linkVKAccountHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vk"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/linkVKAccountSubhead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linkVKAccountHead"
+            app:layout_constraintRight_toLeftOf="@+id/linkVKAccountIcon"
+            android:text="@string/link_your_vk_account"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            />
+
+        <ImageView
+            android:id="@+id/linkVKAccountIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/ic_vk_logo"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/btnAbout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="О приложении"
+        android:text="@string/about_app"
         app:icon="@drawable/ic_info"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appearance"
+        app:layout_constraintTop_toBottomOf="@+id/linkTelegramAccountContainer"
         android:backgroundTint="@color/background_bottom_nav"
         android:textColor="@color/text"
         app:iconTint="@color/text"
