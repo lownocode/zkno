@@ -43,6 +43,7 @@ interface ApiService {
     @POST("marks.get")
     suspend fun getMarks(
         @Header("Authorization") authorization: String?,
+        @Body body: GetMarksBody
     ): Response<ArrayList<MarksItem>>
 
     @GET("dinners/{pathToImage}")

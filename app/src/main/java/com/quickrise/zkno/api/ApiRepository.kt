@@ -4,6 +4,7 @@ import android.app.Activity
 import com.quickrise.zkno.BuildConfig
 import com.quickrise.zkno.Preferences
 import com.quickrise.zkno.foundation.model.*
+import com.quickrise.zkno.foundation.model.UserModel
 import okhttp3.ResponseBody
 import retrofit2.Response
 
@@ -52,7 +53,8 @@ class ApiRepository(activity: Activity) {
 
     suspend fun getMarks(): Response<ArrayList<MarksItem>> {
         return RetrofitInstance.api.getMarks(
-            authorization = userToken
+            authorization = userToken,
+            body = GetMarksBody()//TODO поставить сюда нормальное тело
         )
     }
 

@@ -5,7 +5,6 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
-import com.quickrise.zkno.foundation.model.UserModel
 import com.quickrise.zkno.ui.activities.error.ErrorActivity
 import kotlin.system.exitProcess
 
@@ -47,8 +46,7 @@ class App : Application() {
     }
 
     companion object {
-        @JvmField var user: UserModel? = null
-        lateinit var app: App
+        private lateinit var app: App
         val instance: App get() = app
     }
 }

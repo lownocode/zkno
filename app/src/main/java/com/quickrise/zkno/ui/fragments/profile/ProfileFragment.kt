@@ -2,7 +2,6 @@ package com.quickrise.zkno.ui.fragments.profile
 
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -10,13 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.quickrise.zkno.*
-import com.quickrise.zkno.App.Companion.user
 import com.quickrise.zkno.adapters.ProfileCardsAdapter
 import com.quickrise.zkno.databinding.FragmentProfileBinding
 import com.quickrise.zkno.foundation.base.navigator
 import com.quickrise.zkno.foundation.base.viewBinding
 import com.quickrise.zkno.foundation.base.viewModelFactory
-import com.quickrise.zkno.foundation.model.ProfileCardItem
 import com.quickrise.zkno.foundation.model.UserModel
 import com.quickrise.zkno.ui.fragments.bottomSheets.NewAppVersionBottomSheet
 

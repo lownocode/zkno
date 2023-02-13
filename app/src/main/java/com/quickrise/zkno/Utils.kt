@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.VibrationEffect
@@ -19,13 +18,9 @@ import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
-import com.quickrise.zkno.App.Companion.user
-import com.quickrise.zkno.foundation.base.ActivityActions
-import com.quickrise.zkno.ui.activities.main.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -200,7 +195,7 @@ private class HandleSpanClick(val type: String, val entity: String) : ClickableS
                 activity.startActivity(intent)
             }
             "email" -> {
-                val subject = "${user?.name}, группа ${user?.group?.name}"
+                val subject = "TODO(user name), группа TODO(group)"
                 val intent = Intent(Intent.ACTION_SENDTO).also {
                     it.data = Uri.parse("mailto:$entity?subject=$subject")
                 }

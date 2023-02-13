@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.quickrise.zkno.App.Companion.user
 import com.quickrise.zkno.Preferences
 import com.quickrise.zkno.R
 import com.quickrise.zkno.api.ApiRepository
@@ -37,20 +36,18 @@ class AuthActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         with(window) {
-            ContextCompat.getColor(applicationContext, R.color.background_content).also {
+            ContextCompat.getColor(this@AuthActivity, R.color.background_content).also {
                 this.statusBarColor = it
                 this.navigationBarColor = it
             }
         }
 
-        val inputBackground = GradientDrawable()
-
-        with(inputBackground) {
-            color = ContextCompat.getColorStateList(applicationContext, R.color.divider)
-            cornerRadius = 25f
+        val inputBackground = GradientDrawable().also {
+            it.color = ContextCompat.getColorStateList(this@AuthActivity, R.color.divider)
+            it.cornerRadius = 25f
         }
 
-        with(binding) {
+        with (binding) {
             inputLogin.background = inputBackground
             inputPassword.background = inputBackground
             inputCode.background = inputBackground
@@ -102,11 +99,10 @@ class AuthActivity : AppCompatActivity() {
                 return@launch
             }
 
-            user = userData.body()
             Preferences(this@AuthActivity)
                 .user
                 ?.edit()
-                ?.putString("token", user?.token)
+                ?.putString("token", userData.body()?.token)
                 ?.apply()
 
             checkUpdate()
@@ -139,11 +135,10 @@ class AuthActivity : AppCompatActivity() {
                 return@launch
             }
 
-            user = userData.body()
             Preferences(this@AuthActivity)
                 .user
                 ?.edit()
-                ?.putString("token", user?.token)
+                ?.putString("token", userData.body()?.token)
                 ?.apply()
 
             checkUpdate()
@@ -204,16 +199,9 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun checkUpdate() {
-        if (user?.newAppVersion?.isRequired == true) {
-            val intent = Intent(this, RequiredUpdateActivity::class.java)
-
-            finish()
-            startActivity(intent)
-
-            return
-        }
-
         val intent = Intent(this, MainActivity::class.java)
+
+        //TODO сделать проверку на обязательное обновление и если оно есть - добавить в intent
 
         Utils.hideKeyboard(this, View(this@AuthActivity))
         finish()

@@ -6,15 +6,8 @@ plugins {
     id("com.google.gms.google-services")
     kotlin("android")
     kotlin("plugin.serialization")
+    kotlin("kapt")
 }
-
-//buildscript {
-//    repositories {
-//        maven {
-//            url = uri("http://maven.google.com")
-//        }
-//    }
-//}
 
 android {
     compileSdk = 33
@@ -54,6 +47,12 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
+    }
+
     viewBinding {
         enable = true
     }
@@ -77,7 +76,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.activity:activity-ktx:1.6.1")
     implementation("androidx.fragment:fragment-ktx:1.5.5")
-    implementation("androidx.appcompat:appcompat:1.6.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.savedstate:savedstate:1.2.0")
 

@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
         val isCompactBottomNav = Preferences(this)
             .settings
-            ?.getBoolean(Key.MENU_IS_COMPACT, false)
+            ?.getBoolean(Key.PREF_MENU_IS_COMPACT, false)
 
         if (isCompactBottomNav == true) {
             binding.bottomNavigationView.apply {

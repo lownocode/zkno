@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.clearFragmentResultListener
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -16,6 +17,7 @@ import com.quickrise.zkno.databinding.FragmentDinnerBinding
 import com.quickrise.zkno.ui.fragments.dialogs.CalendarDialog
 import com.quickrise.zkno.Utils.FormatDate
 import com.quickrise.zkno.Utils
+import com.quickrise.zkno.foundation.base.log
 import com.quickrise.zkno.foundation.base.viewBinding
 import com.quickrise.zkno.foundation.base.viewModelFactory
 
@@ -28,6 +30,17 @@ class DinnerFragment : Fragment(R.layout.fragment_dinner) {
 
         setupViews()
         setupViewModelObservers()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        clearFragmentResultListener("calendarResult")
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         setupListeners()
     }
 

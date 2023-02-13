@@ -2,18 +2,17 @@ package com.quickrise.zkno.ui.activities.splash_screen
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import com.quickrise.zkno.*
-import com.quickrise.zkno.App.Companion.user
-import com.quickrise.zkno.api.ApiRepository
 import com.quickrise.zkno.Utils
 import com.quickrise.zkno.ui.activities.auth.AuthActivity
 import com.quickrise.zkno.ui.activities.main.MainActivity
-import com.quickrise.zkno.ui.activities.required_update.RequiredUpdateActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -21,29 +20,21 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_splash_screen)
+
+        getDarkMode()
         initialize()
     }
 
     private fun getDarkMode() {
-        val mode = when(Preferences(this).settings?.getString(Key.DARK_THEME_MODE, Key.MODE_AUTO)) {
+        val mode = when (Preferences(this).settings?.getString(Key.PREF_DARK_THEME_MODE, Key.MODE_ON)) {
             Key.MODE_ON -> AppCompatDelegate.MODE_NIGHT_YES
-            Key.MODE_OFF -> AppCompatDelegate.MODE_NIGHT_NO
-            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM //auto
+            else -> AppCompatDelegate.MODE_NIGHT_NO
         }
 
         AppCompatDelegate.setDefaultNightMode(mode)
     }
 
-    private fun checkUpdate() {
-//        if (user?.newAppVersion?.isRequired == true) {
-//            val intent = Intent(this, RequiredUpdateActivity::class.java)
-//
-//            finish()
-//            startActivity(intent)
-//
-//            return
-//        }
-
+    private fun goToMain() {
         val intent = Intent(this, MainActivity::class.java)
 
         finish()
@@ -51,8 +42,6 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
-        getDarkMode()
-
         with (window) {
             ContextCompat.getColor(applicationContext, R.color.accent).also {
                 this.statusBarColor = it
@@ -93,7 +82,7 @@ class SplashScreenActivity : AppCompatActivity() {
                                 ?.putString("token", deeplinkData.values[0])
                                 ?.apply()
 
-                            checkUpdate()
+                            goToMain()
                         }
                     }
                     else -> {
@@ -109,6 +98,6 @@ class SplashScreenActivity : AppCompatActivity() {
             return finish()
         }
 
-        checkUpdate()
+        goToMain()
     }
 }

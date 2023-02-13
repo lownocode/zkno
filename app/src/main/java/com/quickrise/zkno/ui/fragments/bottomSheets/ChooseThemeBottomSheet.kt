@@ -71,11 +71,6 @@ class ChooseThemeBottomSheet : BottomSheetDialogFragment() {
 
         btnOn.setOnClickListener { viewModel.changeThemeMode(Key.MODE_ON) }
         btnOff.setOnClickListener { viewModel.changeThemeMode(Key.MODE_OFF) }
-        btnAuto.setOnClickListener { viewModel.changeThemeMode(Key.MODE_AUTO) }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            btnAuto.visibility = View.GONE
-        }
     }
 
     private fun setupViewModelObservers() = with (viewModel) {
@@ -92,7 +87,6 @@ class ChooseThemeBottomSheet : BottomSheetDialogFragment() {
         with(binding) {
             btnOnCheckIndicator.visibility = View.GONE
             btnOffCheckIndicator.visibility = View.GONE
-            btnAutoCheckIndicator.visibility = View.GONE
         }
     }
 
@@ -115,10 +109,6 @@ class ChooseThemeBottomSheet : BottomSheetDialogFragment() {
             Key.MODE_OFF -> {
                 binding.btnOffCheckIndicator.visibility = View.VISIBLE
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-            Key.MODE_AUTO -> {
-                binding.btnAutoCheckIndicator.visibility = View.VISIBLE
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
             }
         }
     }

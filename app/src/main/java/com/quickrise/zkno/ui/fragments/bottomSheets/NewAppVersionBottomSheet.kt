@@ -7,22 +7,16 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.quickrise.zkno.App.Companion.user
-import com.quickrise.zkno.BuildConfig
-import com.quickrise.zkno.Preferences
-import com.quickrise.zkno.R
-import com.quickrise.zkno.Utils
+import com.quickrise.zkno.*
 import com.quickrise.zkno.databinding.BottomSheetNewAppVersionBinding
 import com.quickrise.zkno.foundation.base.viewBinding
 
@@ -54,7 +48,7 @@ class NewAppVersionBottomSheet : BottomSheetDialogFragment() {
             btnDownload.setOnClickListener { download() }
             btnPostponed.setOnClickListener { postponed() }
 
-            user?.newAppVersion?.let {
+            user.newAppVersion?.let {
                 details.text = "${it.name} • ${it.date}"
                 description.text = Utils.formatString(it.whatsNew)
             }
@@ -62,7 +56,7 @@ class NewAppVersionBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun download() {
-        val url = Uri.parse(user?.newAppVersion?.path)
+        val url = Uri.parse(user.newAppVersion?.path)
         val intent = Intent(Intent.ACTION_VIEW, url)
 
         startActivity(intent)
@@ -79,7 +73,6 @@ class NewAppVersionBottomSheet : BottomSheetDialogFragment() {
         dismiss()
     }
 
-    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
@@ -91,7 +84,6 @@ class NewAppVersionBottomSheet : BottomSheetDialogFragment() {
         return dialog
     }
 
-    @RequiresApi(Build.VERSION_CODES.S)
     private fun setupBottomSheet(dialogInterface: DialogInterface) {
         val bottomSheetDialog = dialogInterface as BottomSheetDialog
         val bottomSheet: View = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet) ?: return

@@ -3,14 +3,11 @@ package com.quickrise.zkno.ui.fragments.settings
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.quickrise.zkno.*
 import com.quickrise.zkno.databinding.FragmentSettingsBinding
@@ -30,23 +27,20 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         super.onViewCreated(view, savedInstanceState)
 
         setupViews()
-        updateUI()
+        setupViewModelObservers()
     }
 
     private fun setupViews() = with (binding) {
         val cardBackground = GradientDrawable().also {
-            it.color =
-                ContextCompat.getColorStateList(requireActivity(), R.color.background_bottom_nav)
+            it.color = ContextCompat.getColorStateList(requireActivity(), R.color.background_bottom_nav)
             it.cornerRadius = resources.getDimension(R.dimen.squircleBorderRadius)
         }
         val linkTelegramAccountBackground = GradientDrawable().also {
-            it.color =
-                ContextCompat.getColorStateList(requireActivity(), R.color.background_bottom_nav)
+            it.color = ContextCompat.getColorStateList(requireActivity(), R.color.background_bottom_nav)
             it.cornerRadius = 25f
         }
         val linkVKAccountBackground = GradientDrawable().also {
-            it.color =
-                ContextCompat.getColorStateList(requireActivity(), R.color.background_bottom_nav)
+            it.color = ContextCompat.getColorStateList(requireActivity(), R.color.background_bottom_nav)
             it.cornerRadius = 25f
         }
 
@@ -61,11 +55,23 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         linkTelegramAccountContainer.background = linkTelegramAccountBackground
         linkVKAccountContainer.background = linkVKAccountBackground
         linkVKAccountContainer.setOnClickListener { linkAccount("vk") }
-        darkThemeModeStatus.text = getDarkThemeModeStatus()
         switchChangeCompactMenu.isChecked = Preferences()
             .settings
-            ?.getBoolean(Key.MENU_IS_COMPACT, false) == true
+            ?.getBoolean(Key.PREF_MENU_IS_COMPACT, false) == true
     }
+
+    private fun setupViewModelObservers() = viewModel.apply {
+        themeMode.observe(viewLifecycleOwner) {
+            binding.darkThemeModeStatus.text = getDarkThemeModeStatus()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        viewModel.themeMode.removeObservers(viewLifecycleOwner)
+    }
+
     private fun linkAccount(account: String) {
         val link = when (account) {
             "tg" -> LINK_TELEGRAM_ACCOUNT
@@ -87,21 +93,16 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         navigator().navigate(fragmentId = FragmentIndex.ABOUT)
 
     private fun getDarkThemeModeStatus(): String {
-        val defaultMode = when(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            true -> Key.MODE_OFF
-            false -> Key.MODE_AUTO
-        }
-        val darkThemeMode = Preferences().settings?.getString(Key.DARK_THEME_MODE, defaultMode).toString()
+        val darkThemeMode = Preferences(requireActivity()).settings?.getString(Key.PREF_DARK_THEME_MODE, Key.MODE_ON).toString()
 
-        return when(darkThemeMode) {
+        return when (darkThemeMode) {
             Key.MODE_ON -> getString(R.string.darkThemeModeOn)
-            Key.MODE_OFF -> getString(R.string.darkThemeModeOff)
-            else -> getString(R.string.darkThemeModeAuto)
+            else -> getString(R.string.darkThemeModeOff)
         }
     }
 
     private fun changeCompactMenu() {
-        val menuIsCompact = Preferences().settings?.getBoolean(Key.MENU_IS_COMPACT, false)
+        val menuIsCompact = Preferences().settings?.getBoolean(Key.PREF_MENU_IS_COMPACT, false)
         val bottomNavigation: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
 
         with (binding) {
@@ -109,7 +110,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
 
         if (menuIsCompact == true) {
-            Preferences().settings?.edit()?.putBoolean(Key.MENU_IS_COMPACT, false)?.apply()
+            Preferences().settings?.edit()?.putBoolean(Key.PREF_MENU_IS_COMPACT, false)?.apply()
             with (bottomNavigation) {
                 labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_SELECTED
                 layoutParams.height = resources.getDimension(R.dimen.fullSizeBottomNav).toInt()
@@ -118,26 +119,10 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             return
         }
 
-        Preferences().settings?.edit()?.putBoolean(Key.MENU_IS_COMPACT, true)?.apply()
+        Preferences().settings?.edit()?.putBoolean(Key.PREF_MENU_IS_COMPACT, true)?.apply()
         with (bottomNavigation) {
             labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_UNLABELED
             layoutParams.height = resources.getDimension(R.dimen.bottomNavCompact).toInt()
         }
-    }
-
-    private fun updateThemeMode(mode: String) = when (mode) {
-        Key.MODE_ON -> {
-            binding.darkThemeModeStatus.text = getString(R.string.darkThemeModeOn)
-        }
-        Key.MODE_OFF -> {
-            binding.darkThemeModeStatus.text = getString(R.string.darkThemeModeOff)
-        }
-        else -> { //auto
-            binding.darkThemeModeStatus.text = getString(R.string.darkThemeModeAuto)
-        }
-    }
-
-    private fun updateUI() {
-        updateThemeMode(viewModel.themeMode.value!!)
     }
 }

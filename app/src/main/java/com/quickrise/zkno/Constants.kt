@@ -14,6 +14,8 @@ val emptyUser = UserModel(
     bindings = UserModel.Bindings("", false, false)
 )
 
+var user = emptyUser
+
 const val API_BASE_URL = "https://zkno.ru/api/"
 const val LINK_TELEGRAM_ACCOUNT = "https://t.me/zknoassistant_bot?start="
 const val LINK_VK_ACCOUNT= "https://vk.me/zknoassistant?ref="
@@ -42,11 +44,10 @@ object FragmentIndex {
 }
 
 object Key {
-    const val MODE_ON         = "ON"
-    const val MODE_OFF        = "OFF"
-    const val MODE_AUTO       = "AUTO"
-    const val DARK_THEME_MODE = "darkThemeMode"
-    const val MENU_IS_COMPACT = "compactBottomNav"
+    const val MODE_ON = "ON"
+    const val MODE_OFF = "OFF"
+    const val PREF_DARK_THEME_MODE = "darkThemeMode"
+    const val PREF_MENU_IS_COMPACT = "compactBottomNav"
 }
 
 val notificationChannels = listOf(

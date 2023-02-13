@@ -32,9 +32,7 @@ class ViewModelFactory(
                 savedStateHandle = savedStateHandle,
                 apiRepository = apiRepository
             )
-            SettingsViewModel::class.java -> SettingsViewModel(
-                savedStateHandle = savedStateHandle
-            )
+            SettingsViewModel::class.java -> SettingsViewModel()
 
             else -> throw IllegalStateException("Unknown ViewModel class")
         }
