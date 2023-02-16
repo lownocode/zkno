@@ -20,6 +20,8 @@ import com.quickrise.zkno.*
 import com.quickrise.zkno.databinding.BottomSheetNewAppVersionBinding
 import com.quickrise.zkno.foundation.base.viewBinding
 
+import com.google.android.material.R.id as googleMaterialResId
+
 class NewAppVersionBottomSheet : BottomSheetDialogFragment() {
     private val binding by viewBinding(BottomSheetNewAppVersionBinding::inflate)
 
@@ -29,10 +31,15 @@ class NewAppVersionBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View = binding.root
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupViews()
+        notNowButtonVisibility()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setupViews() = with (binding) {
         val containerBackground = GradientDrawable().also {
             it.color = ContextCompat.getColorStateList(
                 requireContext(),
@@ -41,17 +48,23 @@ class NewAppVersionBottomSheet : BottomSheetDialogFragment() {
             it.cornerRadius = resources.getDimension(R.dimen.squircleBorderRadius)
         }
 
-        with(binding) {
-            container.background = containerBackground
-            description.movementMethod = LinkMovementMethod.getInstance()
+        container.background = containerBackground
+        description.movementMethod = LinkMovementMethod.getInstance()
 
-            btnDownload.setOnClickListener { download() }
-            btnPostponed.setOnClickListener { postponed() }
+        btnDownload.setOnClickListener { download() }
+        btnNotNow.setOnClickListener { postponed() }
 
-            user.newAppVersion?.let {
-                details.text = "${it.name} • ${it.date}"
-                description.text = Utils.formatString(it.whatsNew)
-            }
+        user.newAppVersion?.let {
+            details.text = "${it.name} • ${it.date}"
+            description.text = Utils.formatString(it.whatsNew)
+        }
+    }
+
+    private fun notNowButtonVisibility() {
+        val ignoreCode = Preferences().app?.getInt("ignoreAppUpdateCode", 0)
+
+        if (ignoreCode == BuildConfig.VERSION_CODE) {
+            binding.btnNotNow.visibility = View.GONE
         }
     }
 
@@ -86,7 +99,7 @@ class NewAppVersionBottomSheet : BottomSheetDialogFragment() {
 
     private fun setupBottomSheet(dialogInterface: DialogInterface) {
         val bottomSheetDialog = dialogInterface as BottomSheetDialog
-        val bottomSheet: View = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet) ?: return
+        val bottomSheet: View = bottomSheetDialog.findViewById(googleMaterialResId.design_bottom_sheet) ?: return
 
         bottomSheet.setBackgroundColor(Color.TRANSPARENT)
         bottomSheetDialog.window?.setDimAmount(0.3f)

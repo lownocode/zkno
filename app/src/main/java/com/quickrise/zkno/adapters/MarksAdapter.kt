@@ -19,7 +19,7 @@ class MarksAdapter : RecyclerView.Adapter<MarksAdapter.Holder>() {
             notifyDataSetChanged()
         }
 
-    class Holder(val binding: MarksListItemBinding): RecyclerView.ViewHolder(binding.root)
+    class Holder(val binding: MarksListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(parent.viewBinding(MarksListItemBinding::inflate))

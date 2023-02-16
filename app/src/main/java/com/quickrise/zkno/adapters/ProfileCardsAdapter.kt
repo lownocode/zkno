@@ -27,7 +27,7 @@ class ProfileCardsAdapter : RecyclerView.Adapter<ProfileCardsAdapter.Holder>() {
             list = getCardsList()
         }
 
-    class Holder(val binding: ProfileDataItemBinding): RecyclerView.ViewHolder(binding.root)
+    class Holder(val binding: ProfileDataItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(parent.viewBinding(ProfileDataItemBinding::inflate))

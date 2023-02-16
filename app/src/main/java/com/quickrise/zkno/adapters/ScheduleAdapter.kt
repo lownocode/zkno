@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Paint
 import android.graphics.drawable.GradientDrawable
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -15,6 +16,7 @@ import com.quickrise.zkno.foundation.base.viewBinding
 import com.quickrise.zkno.foundation.model.ScheduleModel
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.log
 
 @SuppressLint("NotifyDataSetChanged")
 class ScheduleAdapter(val activity: Activity) : RecyclerView.Adapter<ScheduleAdapter.Holder>() {
@@ -24,7 +26,7 @@ class ScheduleAdapter(val activity: Activity) : RecyclerView.Adapter<ScheduleAda
             notifyDataSetChanged()
         }
 
-    class Holder(val binding: ScheduleListItemBinding): RecyclerView.ViewHolder(binding.root)
+    class Holder(val binding: ScheduleListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(parent.viewBinding(ScheduleListItemBinding::inflate))
@@ -71,7 +73,7 @@ class ScheduleAdapter(val activity: Activity) : RecyclerView.Adapter<ScheduleAda
             }
 
             lessonIdBackground.color = ContextCompat.getColorStateList(
-                activity.applicationContext,
+                activity,
                 if (!item.isEnded) R.color.accent else R.color.background_schedule_lesson_not_ended
             )
 
@@ -85,42 +87,45 @@ class ScheduleAdapter(val activity: Activity) : RecyclerView.Adapter<ScheduleAda
                 afterPausePeriod.visibility = View.VISIBLE
             }
 
+            val text = when (item.type) {
+                REPLACEMENT_TYPE -> "Заменена"
+                ADDED_TYPE -> "Добавлена"
+                else -> "Отменена"
+            }
+
+            val background = when (item.type) {
+                REPLACEMENT_TYPE -> R.color.replacementLesson
+                ADDED_TYPE -> R.color.addedLesson
+                else -> R.color.cancelledLesson
+            }
+
+            when (item.type) {
+                REPLACEMENT_TYPE -> {
+                    lessonName.text = item.replacement ?: UNKNOWN_KEY
+                    replacementLessonIcon.visibility = View.VISIBLE
+
+                    with (replacementLessonName) {
+                        this.text = item.name ?: UNKNOWN_KEY
+                        this.visibility = View.VISIBLE
+                        this.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                    }
+                }
+                ADDED_TYPE -> {
+                    lessonName.text = item.replacement ?: UNKNOWN_KEY
+                }
+                CANCELLED_TYPE -> {
+                    lessonName.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                }
+                else -> {
+                    lessonName.paintFlags = 0
+                    lessonType.visibility = View.GONE
+                    replacementLessonIcon.visibility = View.GONE
+                    replacementLessonName.visibility = View.GONE
+                }
+            }
+
             if (item.type != DEFAULT_TYPE) {
-                val text = when(item.type) {
-                    REPLACEMENT_TYPE -> "Заменена"
-                    ADDED_TYPE -> "Добавлена"
-                    CANCELLED_TYPE -> "Отменена"
-                    else -> UNKNOWN_KEY
-                }
-
-                val background = when(item.type) {
-                    REPLACEMENT_TYPE -> R.color.replacementLesson
-                    ADDED_TYPE -> R.color.addedLesson
-                    else -> R.color.cancelledLesson
-                }
-
-                when(item.type) {
-                    REPLACEMENT_TYPE -> {
-                        lessonName.text = item.replacement ?: UNKNOWN_KEY
-                        replacementLessonIcon.visibility = View.VISIBLE
-
-                        with(replacementLessonName) {
-                            this.text = item.name ?: UNKNOWN_KEY
-                            this.visibility = View.VISIBLE
-                            this.paintFlags = this.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                        }
-                    }
-                    ADDED_TYPE -> {
-                        lessonName.text = item.replacement ?: UNKNOWN_KEY
-                    }
-                    CANCELLED_TYPE -> {
-                        lessonName.apply {
-                            paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                        }
-                    }
-                }
-
-                with(lessonType) {
+                with (lessonType) {
                     this.visibility = View.VISIBLE
                     this.text = text
                     lessonTypeBackground.color = ContextCompat.getColorStateList(
@@ -128,10 +133,6 @@ class ScheduleAdapter(val activity: Activity) : RecyclerView.Adapter<ScheduleAda
                         background
                     )
                 }
-            } else {
-                lessonType.visibility = View.GONE
-                replacementLessonIcon.visibility = View.GONE
-                replacementLessonName.visibility = View.GONE
             }
 
             if (item.marks.isNotEmpty()) {
