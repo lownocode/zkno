@@ -4,13 +4,17 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Paint
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
+import android.os.Build
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.quickrise.zkno.BuildConfig
 import com.quickrise.zkno.R
+import com.quickrise.zkno.Utils
 import com.quickrise.zkno.databinding.ScheduleListItemBinding
 import com.quickrise.zkno.foundation.base.viewBinding
 import com.quickrise.zkno.foundation.model.ScheduleModel

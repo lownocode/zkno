@@ -8,16 +8,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.quickrise.zkno.R
 import com.quickrise.zkno.adapters.MarksAdapter
 import com.quickrise.zkno.databinding.FragmentMarksBinding
+import com.quickrise.zkno.foundation.base.log
 import com.quickrise.zkno.foundation.base.viewBinding
 import com.quickrise.zkno.foundation.base.viewModelFactory
 
 class MarksFragment : Fragment(R.layout.fragment_marks) {
     private val binding by viewBinding(FragmentMarksBinding::bind)
     private val viewModel: MarksViewModel by viewModels { viewModelFactory() }
-    private val marksAdapter = MarksAdapter()
+    private lateinit var marksAdapter: MarksAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        marksAdapter = MarksAdapter(requireActivity())
 
         setupViews()
         setupViewModeObservers()

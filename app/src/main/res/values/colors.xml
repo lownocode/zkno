@@ -16,17 +16,17 @@
     <color name="bottomNavigationBackgroundLight">#000</color>
     <color name="grey">#6B6B6B</color>
     <color name="dark">#000</color>
-    <color name="mark_2">#cb2f2f</color>
-    <color name="mark_3">#ea6f0b</color>
-    <color name="mark_4">#3a9100</color>
-    <color name="mark_5">#009d26</color>
+    <color name="mark_2">#CE3716</color>
+    <color name="mark_3">#A97D0B</color>
+    <color name="mark_4">#008B48</color>
+    <color name="mark_5">#16CE55</color>
     <color name="mark_Н">#9C9C9C</color>
     <color name="green">#009649</color>
     <color name="blue">#1F78FF</color>
-    <color name="mark_2_background">#33CB2F2F</color>
-    <color name="mark_3_background">#33EA6F0B</color>
-    <color name="mark_4_background">#333A9100</color>
-    <color name="mark_5_background">#33009D26</color>
+    <color name="mark_2_background">#33CE3716</color>
+    <color name="mark_3_background">#33A97D0B</color>
+    <color name="mark_4_background">#33008B48</color>
+    <color name="mark_5_background">#3316CE55</color>
     <color name="mark_Н_background">#1A000000</color>
 
     <!-- buttons background & foreground -->
@@ -45,7 +45,7 @@
     <color name="background_bottom_sheet">#fff</color>
     <color name="background_bottom_nav_indicator">#3B975CFF</color>
     <color name="background_pressable">#1A000000</color>
-    <color name="background_bottom_nav">#F9F6FF</color>
+    <color name="background_bottom_nav">#E7DFF8</color>
     <color name="background_toolbar_icon">#3B975CFF</color>
     <color name="background_card">#F4EEFF</color>
     <color name="background_loading_spinner_container">#FFFFFF</color>
@@ -53,9 +53,11 @@
     <color name="background_cancelled_lesson">#1AE44949</color>
     <color name="background_added_lesson">#1A0CCF5A</color>
     <color name="background_schedule_lesson_not_ended">#A2A2A2</color>
+    <color name="background_marks_list_item_container">#201E23</color>
 
     <!-- others -->
     <color name="text">#000</color>
     <color name="text_secondary">#636363</color>
     <color name="divider">#DDDDDD</color>
+    <color name="empty_marks_on_subject">#575757</color>
 </resources>

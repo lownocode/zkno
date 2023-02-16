@@ -18,6 +18,7 @@ import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
+import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
@@ -32,6 +33,20 @@ data class DeeplinkData(
 )
 
 object Utils {
+    fun dpToPixels(size: Int): Int {
+        var dp = 0f
+
+        withActivity {
+            dp = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                size.toFloat(),
+                it.resources.displayMetrics
+            )
+        }
+
+        return dp.toInt()
+    }
+
     fun hideKeyboard(context: Context, view: View) {
         try {
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

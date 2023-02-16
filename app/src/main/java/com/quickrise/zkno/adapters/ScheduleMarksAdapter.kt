@@ -57,7 +57,7 @@ class ScheduleMarksAdapter(
                     this.mark.setTextColor(color)
                     markBackground.color = background
 
-                    if ((duplicates[mark] ?: 0) > 0) with(counter) {
+                    if ((duplicates[mark] ?: 0) > 0) with (counter) {
                         visibility = View.VISIBLE
                         text = duplicates[mark].toString()
 

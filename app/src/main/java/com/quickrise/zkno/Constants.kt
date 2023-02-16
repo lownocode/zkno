@@ -8,10 +8,8 @@ val withActivity = ActivityActions<MainActivity>()
 val emptyUser = UserModel(
     name = "",
     photo = "",
-    group = null,
-    newAppVersion = null,
     token = "",
-    bindings = UserModel.Bindings("", false, false)
+    bindings = UserModel.Bindings("", vk = false, tg = false)
 )
 
 var user = emptyUser
