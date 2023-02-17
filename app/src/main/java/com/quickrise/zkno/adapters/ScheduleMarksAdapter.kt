@@ -39,29 +39,20 @@ class ScheduleMarksAdapter(
 
         withActivity { activity ->
             if (Regex("[2-5]|Н").matches(mark)) {
-                val colorId = activity.resources.getIdentifier(
+                val backgroundId = activity.resources.getIdentifier(
                     "mark_$mark",
                     "color",
                     BuildConfig.APPLICATION_ID
                 )
-                val backgroundId = activity.resources.getIdentifier(
-                    "mark_${mark}_background",
-                    "color",
-                    BuildConfig.APPLICATION_ID
-                )
-                val color = ContextCompat.getColor(activity, colorId)
                 val background = ContextCompat.getColorStateList(activity, backgroundId)
 
                 with (holder.binding) {
                     this.mark.text = mark
-                    this.mark.setTextColor(color)
                     markBackground.color = background
 
                     if ((duplicates[mark] ?: 0) > 0) with (counter) {
                         visibility = View.VISIBLE
                         text = duplicates[mark].toString()
-
-                        setTextColor(color)
                     }
                 }
             }

@@ -13,7 +13,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:background="@color/mark_2_background"
+        tools:background="@color/mark_2"
         android:layout_marginStart="2dp">
 
         <TextView
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/mark_2"
+            android:textColor="@color/white"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="2"

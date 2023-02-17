@@ -29,7 +29,7 @@ class MarksMarkAdapter(val activity: Activity) : RecyclerView.Adapter<MarksMarkA
         val item = list[position]
 
         val containerBackground = GradientDrawable().also {
-            it.cornerRadius = 22f
+            it.cornerRadius = 25f
             it.color = ContextCompat.getColorStateList(
                 activity,
                 getMarkColor(item.mark)
@@ -56,6 +56,6 @@ class MarksMarkAdapter(val activity: Activity) : RecyclerView.Adapter<MarksMarkA
         "3" -> R.color.mark_3
         "4" -> R.color.mark_4
         "5" -> R.color.mark_5
-        else -> R.color.text_secondary
+        else -> R.color.mark_Н
     }
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.quickrise.zkno.R
+import com.quickrise.zkno.Utils
 import com.quickrise.zkno.databinding.MarksListItemBinding
 import com.quickrise.zkno.foundation.base.viewBinding
 import com.quickrise.zkno.foundation.model.MarksItem
@@ -47,25 +48,36 @@ class MarksAdapter (val activity: Activity) : RecyclerView.Adapter<MarksAdapter.
                     activity,
                     getAVGColor(item.avg)
                 )
-                it.cornerRadius = 30f
+                it.cornerRadius = 25f
             }
 
             container.background = containerBackground
             averageMarkContainer.background = averageMarkBackground
 
+            marksCounter.text = item.marks.size.toString()
             marksList.adapter = marksAdapter
             marksList.layoutManager = GridLayoutManager(activity, 5)
             marksAdapter.list = item.marks
             averageMark.text = item.avg.toString()
             subjectName.text = item.subjectName
 
-            if (item.marks.none { it.mark != "Н" }) {
+            if (item.avg.toInt() == 0) {
                 averageMarkContainer.visibility = View.GONE
+            }
+
+            if (item.marks.size == 0) {
+                marksCounter.visibility = View.GONE
                 marksEmpty.visibility = View.VISIBLE
                 subjectName.layoutParams = (subjectName.layoutParams as ViewGroup.MarginLayoutParams).also {
                     it.setMargins(0, 0, 0, 0)
                 }
                 marksList.visibility = View.GONE
+            }
+
+            if (position == list.size - 1) {
+                container.layoutParams = (container.layoutParams as ViewGroup.MarginLayoutParams).also {
+                    it.setMargins(0, Utils.dpToPixels(22), 0, Utils.dpToPixels(22))
+                }
             }
         }
     }
@@ -80,10 +92,11 @@ class MarksAdapter (val activity: Activity) : RecyclerView.Adapter<MarksAdapter.
 
     private fun getAVGColor(mark: Float): Int {
         val colorId = when (mark) {
-            in 4.0..4.99 -> R.color.mark_4
-            in 3.0..4.0 -> R.color.mark_3
-            in 2.0..3.0 -> R.color.mark_2
-            else -> R.color.mark_5
+            in 4.5..5.0 -> R.color.mark_5
+            in 3.5..4.49 -> R.color.mark_4
+            in 2.5..3.49 -> R.color.mark_3
+            in 2.0..2.49 -> R.color.mark_2
+            else -> R.color.mark_Н
         }
 
         return colorId
